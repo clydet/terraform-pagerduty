@@ -7,8 +7,8 @@ module "schedule_eqrs_fc" {
   name   = "${var.team_eqrs_fc} OnCall"
 
   users = [
-    "${module.user_eqrs_fc_kj1410.id}",
-    "${module.user_eqrs_fc_ic6319.id}"
+    module.user_eqrs_fc_kj1410.id,
+    module.user_eqrs_fc_ic6319.id
   ]
 }
 
@@ -20,8 +20,8 @@ resource "pagerduty_escalation_policy" "escalation_policy_eqrs_error" {
   name      = "${var.team_eqrs_fc} Escalation Policy"
   num_loops = 2
   teams     = [
-    "${pagerduty_team.pd_team_eqrs_fc.id}",
-    "${pagerduty_team.pd_team_eqrs_management.id}"
+    pagerduty_team.pd_team_eqrs_fc.id,
+    pagerduty_team.pd_team_eqrs_management.id
   ]
 
   rule {
@@ -29,7 +29,7 @@ resource "pagerduty_escalation_policy" "escalation_policy_eqrs_error" {
 
     target {
       type = "schedule_reference"
-      id   = "${module.schedule_eqrs_fc.id}"
+      id   = module.schedule_eqrs_fc.id
     }
   }
 
@@ -38,7 +38,7 @@ resource "pagerduty_escalation_policy" "escalation_policy_eqrs_error" {
 
     target {
       type = "schedule_reference"
-      id   = "${module.schedule_eqrs_management.id}"
+      id   = module.schedule_eqrs_management.id
     }
   }
 }
@@ -50,7 +50,7 @@ resource "pagerduty_escalation_policy" "escalation_policy_eqrs_error" {
 module "service_eqrs_prod" {
   source            = "../../modules/pagerduty/service"
   name              = "Prod ${var.team_eqrs_fc} - High Urgency"
-  escalation_policy = "${pagerduty_escalation_policy.escalation_policy_eqrs_error.id}"
+  escalation_policy = pagerduty_escalation_policy.escalation_policy_eqrs_error.id
 }
 
 ########################
@@ -66,7 +66,7 @@ module "service_eqrs_prod" {
 module "service_integration_eqrs_email" {
   source  = "../../modules/pagerduty/service_integration"
   name    = "Email"
-  service = "${module.service_eqrs_prod.id}"
+  service = module.service_eqrs_prod.id
   email   = "ctedrick@flexion.us"
 }
 

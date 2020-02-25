@@ -1,3 +1,3 @@
 provider "pagerduty" {
-  token = "${var.pagerduty_token}"
+  token = var.pagerduty_token
 }

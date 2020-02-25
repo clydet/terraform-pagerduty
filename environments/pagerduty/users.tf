@@ -8,7 +8,11 @@ module "user_eqrs_management_be1284" {
   email     = "greg.eccleston@cms.hhs.gov"
   mobile    = "7153099237"
   job_title = "EQRS Management"
-  teams     = "${pagerduty_team.pd_team_eqrs_management.id}"
+}
+
+resource "pagerduty_team_membership" "membership_eqrs_management_be1284" {
+  user_id = module.user_eqrs_management_be1284.id
+  team_id = pagerduty_team.pd_team_eqrs_management.id
 }
 
 module "user_eqrs_fc_kj1410" {
@@ -17,7 +21,11 @@ module "user_eqrs_fc_kj1410" {
   email     = "iamclyde@gmail.com"
   mobile    = "7153099237"
   job_title = "Foundation Components Liaison"
-  teams     = pagerduty_team.pd_team_eqrs_fc.id
+}
+
+resource "pagerduty_team_membership" "membership_eqrs_fc_kj1410" {
+  user_id = module.user_eqrs_fc_kj1410.id
+  team_id = pagerduty_team.pd_team_eqrs_fc.id
 }
 
 module "user_eqrs_fc_ic6319" {
@@ -26,5 +34,9 @@ module "user_eqrs_fc_ic6319" {
   email     = "ayochum@flexion.us"
   mobile    = "7153099237"
   job_title = "Foundation Components Lead"
-  teams     = pagerduty_team.pd_team_eqrs_fc.id
+}
+
+resource "pagerduty_team_membership" "membership_eqrs_fc_ic6319" {
+  user_id = module.user_eqrs_fc_ic6319.id
+  team_id = pagerduty_team.pd_team_eqrs_fc.id
 }

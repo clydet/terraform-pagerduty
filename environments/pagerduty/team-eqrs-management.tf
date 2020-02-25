@@ -7,6 +7,6 @@ module "schedule_eqrs_management" {
   name   = "${var.team_eqrs_management} OnCall"
 
   users = [
-    "${module.user_eqrs_management_be1284.id}"
+    module.user_eqrs_management_be1284.id
   ]
 }
