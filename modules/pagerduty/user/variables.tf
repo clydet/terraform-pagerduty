@@ -12,6 +12,6 @@ variable "job_title" {
   default = "N/A"
 }
 
-variable "teams" {}
+# variable "teams" {}
 
 variable "mobile" {}

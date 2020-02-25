@@ -19,5 +19,5 @@ variable "rotation_length" {
 }
 
 variable "users" {
-  type = "list"
+  type = list
 }
